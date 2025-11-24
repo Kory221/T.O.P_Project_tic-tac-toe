@@ -8,3 +8,10 @@ html {
 *::after {
     box-sizing: inherit;
 }
+
+div > div {
+    display: inline-block;
+    border: solid black 1px;
+    height: 20vh;
+    width: 10vw;
+}

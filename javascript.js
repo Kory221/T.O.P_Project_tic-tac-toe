@@ -25,3 +25,11 @@ function players () {
     return {playerX, playerO}
 };
 
+
+function printSign () {
+    for (let row of gameboard().board) {
+        for (let i = 0; i < 3; i++) {
+            row[i].textContent = "W"
+        }
+    }
+}

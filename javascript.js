@@ -29,7 +29,9 @@ function players () {
 function printSign () {
     for (let row of gameboard().board) {
         for (let i = 0; i < 3; i++) {
-            row[i].textContent = "W"
-        }
-    }
-}
+            row[i].addEventListener ('click', () => {
+                row[i].textContent = 'W';
+            } );
+        };
+    };
+};

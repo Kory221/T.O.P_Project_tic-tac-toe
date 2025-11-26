@@ -27,11 +27,24 @@ function players () {
 
 
 function printSign () {
+    let count = 0;
     for (let row of gameboard().board) {
         for (let i = 0; i < 3; i++) {
-            row[i].addEventListener ('click', () => {
-                row[i].textContent = 'W';
-            } );
+            function printer (player1, player2) {
+                if (count % 2 === 0) {
+                    row[i].textContent = players().playerX;
+                    count++;
+                    row[i].removeEventListener ('click', printer);
+                }
+                else {
+                    row[i].textContent = players().playerO;
+                    count++;
+                    row[i].removeEventListener ('click', printer);
+                }
+            }
+           if (row[i].textContent === '') { 
+                row[i].addEventListener ('click', printer);
+            }
         };
     };
 };

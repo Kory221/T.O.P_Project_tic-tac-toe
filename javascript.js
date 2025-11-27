@@ -79,17 +79,20 @@ function gameResult () {
     for (let line of lines) {
         if (line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
-            && line[0].textContent === 'x') {
+            && line[0].textContent === 'x') 
+        {
             result = 'game over, X wins';
         }
         else if (line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
-            && line[0].textContent === 'o') {
+            && line[0].textContent === 'o') 
+        {
             result = 'game over, O wins';
         }
-        else if (line[0].textContent === '' || line[1].textContent === '' || line[2].textContent === '') {
+        else if (result === "game over, it's a draw" && line[0].textContent === '' || result === "game over, it's a draw" && line[1].textContent === '' || result === "game over, it's a draw" && line[2].textContent === '') 
+        {
             result = "game in process"
-        }
+        };
     };
     return result;
 };

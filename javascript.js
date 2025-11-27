@@ -32,8 +32,6 @@ function printSign () {
     document.querySelector('.game-frame').textContent = '';
     let roundResult = document.querySelector('.Roud-result');
     roundResult.textContent='';
-    const body = document.querySelector('body');
-    body.appendChild(roundResult);
 
     let gameTurn = "X's turn";
     let count = 0;

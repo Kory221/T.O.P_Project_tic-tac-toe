@@ -34,13 +34,13 @@ function printSign () {
     for (let row of gameboard().board) {
         for (let i = 0; i < 3; i++) {
             function printer () {
-                if (count % 2 === 0) {
+                if (count % 2 === 0 && gameResult().result === "game in process") {
                     row[i].textContent = players().playerX;
                     count++;
                     row[i].removeEventListener ('click', printer);
                     gameTurn = "O's turn";
                 }
-                else {
+                else if (gameResult().result === "game in process") {
                     row[i].textContent = players().playerO;
                     count++;
                     row[i].removeEventListener ('click', printer);
@@ -94,5 +94,5 @@ function gameResult () {
             result = "game in process"
         };
     };
-    return result;
+    return {result};
 };

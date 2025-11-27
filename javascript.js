@@ -2,12 +2,12 @@ function gameboard () {
     const rows = 3;
     const columns = 3;
     const board = [];
-    const body = document.querySelector('body');
+    const gameFrame = document.querySelector('.game-frame');
 
     for (let i=0; i<rows; i++) {
         const rowDiv = document.createElement('div');
         rowDiv.setAttribute('id','row'+i);
-        body.appendChild(rowDiv);
+        gameFrame.appendChild(rowDiv);
         board[i] = [];
         for (let j=0; j<columns; j++) {
             const columnDiv = document.createElement('div');
@@ -29,6 +29,7 @@ function players () {
 
 
 function printSign () {
+    document.querySelector('.game-frame').textContent = '';
     let gameTurn = "X's turn";
     let count = 0;
     for (let row of gameboard().board) {
@@ -96,3 +97,8 @@ function gameResult () {
     };
     return {result};
 };
+
+(function displayer() {
+    const startbtn = document.querySelector('.new-game');
+    startbtn.addEventListener('click', printSign);
+})()

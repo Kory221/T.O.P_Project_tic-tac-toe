@@ -9,8 +9,9 @@ html {
     box-sizing: inherit;
 }
 
-div {
+.row0, .row1, .row2 {
     margin: 0;
+    max-height: 20vh;
 }
 
 div > div {
@@ -19,5 +20,15 @@ div > div {
     border-top: none;
     height: 20vh;
     width: 10vw;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    align-content: center;
+    font-size: (50px);
 }
 
+.game-frame {
+    background-color: aqua;
+    width: fit-content;
+    height: fit-content;
+}

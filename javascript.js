@@ -30,6 +30,13 @@ function players () {
 
 function printSign () {
     document.querySelector('.game-frame').textContent = '';
+    
+    let playerXScore = document.querySelector('.playerX-score');
+    let playerOScore = document.querySelector('.playerO-score');
+
+    playerXScore.textContent = '2';
+    playerOScore.textContent = '3';
+
     let gameTurn = "X's turn";
     let count = 0;
     for (let row of gameboard().board) {
@@ -57,6 +64,9 @@ function printSign () {
 };
 
 function gameResult () {
+    let score1 = 0;
+    let score2 = 0;
+
     let result = "game over, it's a draw";
     const cell1 = document.querySelector('#row0 .col0');
     const cell2 = document.querySelector('#row0 .col1');
@@ -83,22 +93,44 @@ function gameResult () {
             && line[0].textContent === 'x') 
         {
             result = 'game over, X wins';
+            score1++;
         }
         else if (line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
             && line[0].textContent === 'o') 
         {
             result = 'game over, O wins';
+            score2++;
         }
         else if (result === "game over, it's a draw" && line[0].textContent === '' || result === "game over, it's a draw" && line[1].textContent === '' || result === "game over, it's a draw" && line[2].textContent === '') 
         {
             result = "game in process"
         };
     };
-    return {result};
+    return {result, score1, score2};
 };
 
 (function displayer() {
     const startbtn = document.querySelector('.new-game');
+    const playerX = document.querySelector('.player-X');
+    const playerO = document.querySelector('.player-O');
+    const inputX = document.querySelector('#playerX');
+    const inputO = document.querySelector ('#playerO');
+    const addPlayersBtn = document.querySelector('#add-players');
+    
     startbtn.addEventListener('click', printSign);
+    
+    function getNames () {
+    const dialog = document.querySelector("dialog");
+    dialog.showModal();
+    startbtn.removeEventListener('click', getNames);
+    }
+    startbtn.addEventListener('click', getNames);
+
+    addPlayersBtn.addEventListener('click', ()=>{
+    playerX.textContent = inputX.value+" (X)";
+    playerO.textContent = inputO.value+" (O)";
+
+    })
+
 })();

@@ -10,12 +10,25 @@
 <body>
     <h1>Tic-Tac-Toe by KORY</h1>
     <button class="new-game">New game</button>
-    <div class="player X"> Kory (X)
-        <span>score</span>
+    <div class="player-X">
+        <span class="playerX-score"></span>
     </div>
-    <div class="Player O">Ndiaye (O)
-        <span>score</span>
+    <div class="player-O">
+        <span class="playerO-score"></span>
     </div>
     <div class="game-frame"></div>
+    <dialog>
+        <form action="" method="dialog">
+            <div class="inputX">
+                <label for="playerX"> Player 1</label>
+                <input type="text" id="playerX" placeholder="Your sign (X)" name="player 1">
+            </div>
+            <div class="inputO">
+                <label for="playerO"> Player 2</label>
+                <input type="text" id="playerO" placeholder="Your sign (O)" name="player 2">
+            </div>
+            <button id="add-players">Start</button>
+        </form>
+    </dialog>
 </body>
 </html>

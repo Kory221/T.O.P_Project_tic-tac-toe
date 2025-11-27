@@ -30,7 +30,7 @@ function players () {
 
 function printSign () {
     document.querySelector('.game-frame').textContent = '';
-    let roundResult = document.querySelector('.Roud-result');
+    let roundResult = document.querySelector('.Round-result');
     roundResult.textContent='';
 
     let gameTurn = "X's turn";
@@ -38,32 +38,39 @@ function printSign () {
     for (let row of gameboard().board) {
         for (let i = 0; i < 3; i++) {
             function printer () {
-                if (count % 2 === 0 && gameResult().result === "game in process") {
+                if (count % 2 === 0 && gameResult().result === "game in process" && row[i].textContent === '') {
                     row[i].textContent = players().playerX;
                     count++;
                     roundResult.textContent = gameResult().result;
                     gameTurn = "O's turn";
                     row[i].removeEventListener ('click', printer);
                 }
-                else if (gameResult().result === "game in process") {
+                else if (gameResult().result === "game in process" && row[i].textContent === '') {
                     row[i].textContent = players().playerO;
                     count++;
                     roundResult.textContent = gameResult().result;
                     gameTurn = "X's turn";
                     row[i].removeEventListener ('click', printer); 
                 }
+                else {
+                    gameTurn = '';
+                    row[i].removeEventListener ('click', printer);
+                }
             };
-           if (row[i].textContent === '') { 
+        
                 row[i].addEventListener ('click', printer);
-            };
+        
         };
     };
     return {gameTurn};
 };
 
+let score1 = 0;
+let score2 = 0;
 function gameResult () {
-    let score1 = 0;
-    let score2 = 0;
+    let playerXscore = document.querySelector('.playerX-score');
+    let playerOscore = document.querySelector('.playerO-score');
+    
 
     let result = "game over, it's a draw";
     const cell1 = document.querySelector('#row0 .col0');
@@ -86,19 +93,25 @@ function gameResult () {
     [cell3, cell5, cell7]];
     
     for (let line of lines) {
-        if (line[0].textContent === line[1].textContent 
+        if (
+            result !== 'game over, X wins'
+            &&line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
             && line[0].textContent === 'x') 
         {
             result = 'game over, X wins';
-            score1++;
+            ++score1;
+            playerXscore.textContent = score1;
         }
-        else if (line[0].textContent === line[1].textContent 
+        else if (
+            result !== 'game over, O wins'
+            && line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
             && line[0].textContent === 'o') 
         {
             result = 'game over, O wins';
-            score2++;
+            ++score2;
+            playerOscore.textContent = score2;
         }
         else if (result === "game over, it's a draw" && line[0].textContent === '' || result === "game over, it's a draw" && line[1].textContent === '' || result === "game over, it's a draw" && line[2].textContent === '') 
         {

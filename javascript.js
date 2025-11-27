@@ -30,12 +30,10 @@ function players () {
 
 function printSign () {
     document.querySelector('.game-frame').textContent = '';
-    
-    let playerXScore = document.querySelector('.playerX-score');
-    let playerOScore = document.querySelector('.playerO-score');
-
-    playerXScore.textContent = '2';
-    playerOScore.textContent = '3';
+    let roundResult = document.querySelector('.Roud-result');
+    roundResult.textContent='';
+    const body = document.querySelector('body');
+    body.appendChild(roundResult);
 
     let gameTurn = "X's turn";
     let count = 0;
@@ -45,14 +43,16 @@ function printSign () {
                 if (count % 2 === 0 && gameResult().result === "game in process") {
                     row[i].textContent = players().playerX;
                     count++;
-                    row[i].removeEventListener ('click', printer);
+                    roundResult.textContent = gameResult().result;
                     gameTurn = "O's turn";
+                    row[i].removeEventListener ('click', printer);
                 }
                 else if (gameResult().result === "game in process") {
                     row[i].textContent = players().playerO;
                     count++;
-                    row[i].removeEventListener ('click', printer);
-                    gameTurn = "X's turn"
+                    roundResult.textContent = gameResult().result;
+                    gameTurn = "X's turn";
+                    row[i].removeEventListener ('click', printer); 
                 }
             };
            if (row[i].textContent === '') { 
@@ -60,7 +60,7 @@ function printSign () {
             };
         };
     };
-    return gameTurn;
+    return {gameTurn};
 };
 
 function gameResult () {
@@ -123,8 +123,10 @@ function gameResult () {
     function getNames () {
     const dialog = document.querySelector("dialog");
     dialog.showModal();
+    
     startbtn.removeEventListener('click', getNames);
     }
+
     startbtn.addEventListener('click', getNames);
 
     addPlayersBtn.addEventListener('click', ()=>{

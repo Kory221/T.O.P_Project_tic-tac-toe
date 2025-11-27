@@ -101,4 +101,4 @@ function gameResult () {
 (function displayer() {
     const startbtn = document.querySelector('.new-game');
     startbtn.addEventListener('click', printSign);
-})()
+})();

@@ -9,26 +9,51 @@ html {
     box-sizing: inherit;
 }
 
+h1 {
+    text-align: center;
+}
+
 .row0, .row1, .row2 {
     margin: 0;
-    max-height: 20vh;
 }
+
+
 
 div > div {
     display: inline-block;
     border: solid black 1px;
-    border-top: none;
     height: 20vh;
-    width: 10vw;
+    width: 30vw;
     padding: 0;
     margin: 0;
     text-align: center;
     align-content: center;
-    font-size: (50px);
+    justify-content: center;
+    font-size: 100px;
+    display: flex;
 }
 
 .game-frame {
-    background-color: aqua;
+    margin-left: 35vw;
+    background-color: rgb(167, 184, 184);
     width: fit-content;
     height: fit-content;
+}
+
+.players {
+    margin-left: 35vw;
+}
+
+.Round-result {
+    font-size: 40px;
+    margin-left: 35vw;
+}
+
+.new-game {
+    font-size: 20px;
+    background-color: rgb(212, 206, 198);
+    border-radius: 10px;
+    text-align: center;
+    margin-left: 45vw;
+    margin-bottom: 5px;
 }

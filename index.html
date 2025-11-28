@@ -9,11 +9,11 @@
 <body>
     <h1>Tic-Tac-Toe by KORY</h1>
     <button class="new-game">New game</button>
-    <div>
+    <div class="players">
         <span class="player-X"></span>
         <span class="playerX-score"></span>
     </div>
-    <div>
+    <div class="players">
         <span class="player-O"></span>
         <span class="playerO-score"></span>
     </div>
@@ -22,11 +22,11 @@
         <form action="" method="dialog">
             <div class="inputX">
                 <label for="playerX"> Player 1</label>
-                <input type="text" id="playerX" placeholder="Your sign (X)" name="player 1">
+                <input type="text" id="playerX" placeholder="Your sign (X)" name="player 1" required>
             </div>
             <div class="inputO">
                 <label for="playerO"> Player 2</label>
-                <input type="text" id="playerO" placeholder="Your sign (O)" name="player 2">
+                <input type="text" id="playerO" placeholder="Your sign (O)" name="player 2" required>
             </div>
             <button id="add-players">Start</button>
         </form>

@@ -33,29 +33,36 @@ function printSign () {
     let roundResult = document.querySelector('.Round-result');
     roundResult.textContent='';
 
-    let gameTurn = "X's turn";
+    let gameTurn = " : O's turn";
     let count = 0;
     for (let row of gameboard().board) {
         for (let i = 0; i < 3; i++) {
             function printer () {
-                if (count % 2 === 0 && gameResult().result === "game in process" && row[i].textContent === '') {
+                
+                if (gameResult().result !== "game in process") {
+                    gameTurn = '';
+                    roundResult.textContent = gameResult().result;
+                    row[i].removeEventListener ('click', printer);
+                    return;
+                }
+
+                else if (count % 2 === 0 && gameResult().result === "game in process" && row[i].textContent === '') {
                     row[i].textContent = players().playerX;
                     count++;
                     roundResult.textContent = gameResult().result;
-                    gameTurn = "O's turn";
+                    gameTurn = " : X's turn";
                     row[i].removeEventListener ('click', printer);
+                    return;
                 }
                 else if (gameResult().result === "game in process" && row[i].textContent === '') {
                     row[i].textContent = players().playerO;
                     count++;
                     roundResult.textContent = gameResult().result;
-                    gameTurn = "X's turn";
+                    gameTurn = " : O's turn";
                     row[i].removeEventListener ('click', printer); 
+                    return;
                 }
-                else {
-                    gameTurn = '';
-                    row[i].removeEventListener ('click', printer);
-                }
+               
             };
         
                 row[i].addEventListener ('click', printer);
@@ -95,13 +102,13 @@ function gameResult () {
     for (let line of lines) {
         if (
             result !== 'game over, X wins'
-            &&line[0].textContent === line[1].textContent 
+            && line[0].textContent === line[1].textContent 
             && line[0].textContent === line[2].textContent
             && line[0].textContent === 'x') 
         {
             result = 'game over, X wins';
-            ++score1;
-            playerXscore.textContent = score1;
+            score1++;
+            /*playerXscore.textContent = score1;*/
         }
         else if (
             result !== 'game over, O wins'
@@ -110,8 +117,8 @@ function gameResult () {
             && line[0].textContent === 'o') 
         {
             result = 'game over, O wins';
-            ++score2;
-            playerOscore.textContent = score2;
+            score2++;
+            /*playerOscore.textContent = score2;*/ 
         }
         else if (result === "game over, it's a draw" && line[0].textContent === '' || result === "game over, it's a draw" && line[1].textContent === '' || result === "game over, it's a draw" && line[2].textContent === '') 
         {
